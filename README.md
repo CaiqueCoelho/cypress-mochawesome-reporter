@@ -162,3 +162,103 @@ cd examples/<example-project>
 npm i
 npm test
 ```
+
+## Publishing
+
+### Automated publishing (via GitHub Actions)
+
+This project uses [Release Please](https://github.com/googleapis/release-please) to automate releases. The workflow is:
+
+1. Push commits to `main` using [Conventional Commits](https://www.conventionalcommits.org/) format (e.g., `fix: description`, `feat: description`)
+2. Release Please opens a release PR with version bump and changelog
+3. Merge the release PR
+4. Release Please creates a GitHub Release, which triggers npm publish automatically
+
+### Publishing manually from local
+
+1. Log in to npm:
+
+   ```bash
+   npm login
+   ```
+
+2. Verify you are logged in with the correct account:
+
+   ```bash
+   npm whoami
+   ```
+
+3. Publish:
+
+   ```bash
+   npm publish --access public --tag latest
+   ```
+
+### Merging without triggering a release
+
+Release Please only creates release PRs for commits that use `fix:` or `feat:` prefixes. To merge changes (like README updates) without triggering a new release, use other conventional commit types:
+
+- `docs: update README` — documentation changes
+- `chore: update dependencies` — maintenance tasks
+- `ci: update workflow` — CI/CD changes
+- `refactor: reorganize code` — code restructuring
+- `test: add unit tests` — test changes
+
+These commits will be merged to `main` without Release Please creating a release PR or bumping the version.
+
+### Troubleshooting npm publish
+
+#### E404 Not Found on publish
+
+```
+npm error 404 Not Found - PUT https://registry.npmjs.org/cypress-mochawesome-reporter-v2 - Not found
+```
+
+This usually means your npm token or account does not have publish permissions to the package.
+
+1. Check who owns the package:
+
+   ```bash
+   npm owner ls cypress-mochawesome-reporter-v2
+   ```
+
+2. Check which account you are logged in as:
+
+   ```bash
+   npm whoami
+   ```
+
+3. If `npm whoami` returns `E401 Unauthorized` even after `npm login`, check for a stale token in `~/.npmrc`:
+
+   ```bash
+   cat ~/.npmrc
+   ```
+
+   Replace the old token:
+
+   ```bash
+   npm config set //registry.npmjs.org/:_authToken YOUR_NEW_TOKEN
+   ```
+
+4. Verify your account is listed as an owner or has read-write collaborator access to the package.
+
+#### E401 Unauthorized after npm login
+
+If `npm login` succeeds in the browser but `npm whoami` returns E401, an old token in `~/.npmrc` is overriding the new session. Replace it as shown above.
+
+#### Cannot publish over previously published version
+
+```
+npm error You cannot publish over the previously published versions: x.x.x
+```
+
+The version in `package.json` has already been published. Bump the version before publishing again.
+
+#### GitHub Actions publish fails
+
+If the automated publish fails after a release is created:
+
+1. Fix the issue (e.g., update the `NPM_TOKEN` secret in the repo settings)
+2. Go to the Actions tab in GitHub
+3. Find the failed workflow run
+4. Click **"Re-run failed jobs"** to retry with the same release outputs
