@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.5](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/compare/cypress-mochawesome-reporter-v2-v2.0.4...cypress-mochawesome-reporter-v2-v2.0.5) (2026-04-09)
+
+
+### Bug Fixes
+
+* release ([3a305b2](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/commit/3a305b2d9fd109b77194b974e315c4ff2183d48d))
+* release ([20110c4](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/commit/20110c48259ccf403d0c18aa1f28170ea3f5ba82))
+
 ## [2.0.4](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/compare/cypress-mochawesome-reporter-v2-v2.0.3...cypress-mochawesome-reporter-v2-v2.0.4) (2026-04-09)
 
 
