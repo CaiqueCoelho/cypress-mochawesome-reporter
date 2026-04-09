@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/compare/cypress-mochawesome-reporter-v2-v2.0.2...cypress-mochawesome-reporter-v2-v2.0.3) (2026-04-09)
+
+
+### Bug Fixes
+
+* path for video ([0471f9b](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/commit/0471f9b9d432dbc4a75433a6220c37cd9683f919))
+* path for video ([34c35d1](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/commit/34c35d147274ba69e8437350a768c9b025483f7a))
+
 ## [2.0.2](https://github.com/CaiqueCoelho/cypress-mochawesome-reporter/compare/cypress-mochawesome-reporter-v2-v2.0.1...cypress-mochawesome-reporter-v2-v2.0.2) (2026-04-09)
 
 
